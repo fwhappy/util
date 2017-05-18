@@ -3,35 +3,32 @@ package util
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
-
-	"mahjong.go/config"
-	"mahjong.go/library/core"
 )
 
 // GenToken 生成token字符串
-func GenToken(userId int, extraStr string) string {
+func GenToken(userId int, extraStr string, secretKey string) string {
 	bytes, _ := json.Marshal([]interface{}{userId, extraStr, GetTime(), 1000 + RandIntn(8999)})
-	return Authcode(string(bytes), "ENCODE", config.TOKEN_SECRET_KEY)
+	return Authcode(string(bytes), "ENCODE", secretKey)
 }
 
 // CheckToken decrypt token
-func CheckToken(token string) ([]interface{}, *core.Error) {
-	result := Authcode(token, "DECODE", config.TOKEN_SECRET_KEY)
+func CheckToken(token string, secretKey string) ([]interface{}, error) {
+	result := Authcode(token, "DECODE", secretKey)
 	if result == "" {
-		return nil, core.NewError(-2)
+		return nil, errors.New("decode token failed")
 	}
 	f := make([]interface{}, 4)
 	err := json.Unmarshal([]byte(result), &f)
 	if err != nil {
-		return nil, core.NewError(-2, err.Error())
+		return nil, errors.New("decode token failed")
 	}
 
-	tokenInfo := make([]interface{}, 4)
-
 	// 用户id
+	tokenInfo := make([]interface{}, 4)
 	tokenInfo[0] = f[0]
 	tokenInfo[1] = f[2]
 	tokenInfo[2] = f[3]
@@ -43,7 +40,6 @@ func CheckToken(token string) ([]interface{}, *core.Error) {
 	} else {
 		tokenInfo[3] = ""
 	}
-
 	return tokenInfo, nil
 }
 
