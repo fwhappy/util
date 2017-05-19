@@ -33,7 +33,12 @@ func JsonDecode(b []byte) (JsonMap, error) {
 // JsonGetInt 从JsonMap中解析出一个int值
 func (m JsonMap) JsonGetInt(key string) (int, bool) {
 	if val, exists := m[key]; exists {
-		return int(val.(float64)), true
+		switch val.(type) {
+		case float64:
+			return int(val.(float64)), true
+		case int:
+			return val.(int), true
+		}
 	}
 	return 0, false
 }
@@ -57,7 +62,12 @@ func (m JsonMap) JsonGetString(key string) (string, bool) {
 // JsonGetJsonMap 从JsonMap中解析出一个JsonMap值
 func (this JsonMap) JsonGetJsonMap(key string) (JsonMap, bool) {
 	if val, exists := this[key]; exists {
-		return val.(map[string]interface{}), true
+		switch val.(type) {
+		case map[string]interface{}:
+			return JsonMap(val.(map[string]interface{})), true
+		case interface{}:
+			return val.(JsonMap), true
+		}
 	}
 	return JsonMap{}, false
 }
