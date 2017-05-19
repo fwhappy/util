@@ -60,16 +60,16 @@ func (m JsonMap) JsonGetString(key string) (string, bool) {
 }
 
 // JsonGetJsonMap 从JsonMap中解析出一个JsonMap值
-func (this JsonMap) JsonGetJsonMap(key string) (JsonMap, bool) {
+func (this JsonMap) JsonGetJsonMap(key string) JsonMap {
 	if val, exists := this[key]; exists {
 		switch val.(type) {
 		case map[string]interface{}:
-			return JsonMap(val.(map[string]interface{})), true
+			return JsonMap(val.(map[string]interface{}))
 		case interface{}:
-			return val.(JsonMap), true
+			return val.(JsonMap)
 		}
 	}
-	return JsonMap{}, false
+	return JsonMap{}
 }
 
 // InterfaceToJsonString 将任意类型的数据，转成json格式的字符串
