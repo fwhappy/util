@@ -98,8 +98,8 @@ func SliceJoin(s []int, joinString string) string {
 	return str
 }
 
-// InStringSlince 判断某个string值是否在切片中
-func InStringSlince(finder string, slice []string) bool {
+// InStringSlice 判断某个string值是否在切片中
+func InStringSlice(finder string, slice []string) bool {
 	exists := false
 	for _, v := range slice {
 		if v == finder {
