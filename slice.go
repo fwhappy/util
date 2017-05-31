@@ -72,7 +72,7 @@ func sliceDel(slice []int, value int) []int {
 	}
 	for i, j := range slice {
 		if j == value {
-			return append(slice[:i], slice[i+1:]...)
+			return append(append([]int{}, slice[:i]...), slice[i+1:]...)
 		}
 	}
 	return slice
@@ -127,7 +127,8 @@ func sliceDelString(slice []string, value string) []string {
 	}
 	for i, j := range slice {
 		if j == value {
-			return append(slice[:i], slice[i+1:]...)
+			// return append(slice[:i], slice[i+1:]...)
+			return append(append([]string{}, slice[:i]...), slice[i+1:]...)
 		}
 	}
 	return slice
