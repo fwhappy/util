@@ -132,3 +132,14 @@ func sliceDelString(slice []string, value string) []string {
 	}
 	return slice
 }
+
+// SliceMaxInt 取int类型的最大值
+func SliceMaxInt(s []int) int {
+	var max = 0
+	for _, v := range s {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
