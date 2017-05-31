@@ -144,3 +144,16 @@ func SliceMaxInt(s []int) int {
 	}
 	return max
 }
+
+// SliceUniqueInt 去重
+func SliceUniqueInt(s []int) []int {
+	uniquedSlice := []int{}
+	m := make(map[int]bool)
+	for _, v := range s {
+		if _, exists := m[v]; !exists {
+			m[v] = true
+			uniquedSlice = append(uniquedSlice, v)
+		}
+	}
+	return uniquedSlice
+}
