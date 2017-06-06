@@ -11,7 +11,7 @@ func RecoverPanic() {
 		timestamp := GetTimestamp()
 		stack := make([]byte, 1024)
 		stack = stack[:runtime.Stack(stack, true)]
-		fmt.Println("[", timestamp, "]", "catchPanic:", err)
+		fmt.Println("[", timestamp, "]", "recoverPanic:", err)
 		fmt.Println("[", timestamp, "]", "stack:", string(stack))
 	}
 }
