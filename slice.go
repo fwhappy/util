@@ -157,3 +157,28 @@ func SliceUniqueInt(s []int) []int {
 	}
 	return uniquedSlice
 }
+
+// SliceToMap 将[]int 转化成map[int]count
+func SliceToMap(slice []int) map[int]int {
+	var m = map[int]int{}
+	for _, j := range slice {
+		var _, ok = m[j]
+		if ok {
+			m[j]++
+		} else {
+			m[j] = 1
+		}
+	}
+	return m
+}
+
+// MapToSlice 将map[int]count 转成 []int
+func MapToSlice(m map[int]int) []int {
+	tiles := []int{}
+	for tile, cnt := range m {
+		for i := 0; i < cnt; i++ {
+			tiles = append(tiles, tile)
+		}
+	}
+	return tiles
+}
