@@ -50,3 +50,13 @@ func GetMapMaxValue(m map[int]int) (int, []int) {
 	}
 	return maxValue, keys
 }
+
+// GetMapValues 获取map[int]int结构的所有value
+// 返回结果去重
+func GetMapValues(m map[int]int) []int {
+	values := make([]int, 0)
+	for _, v := range m {
+		values = append(values, v)
+	}
+	return values
+}
