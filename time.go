@@ -15,6 +15,11 @@ func GetMicrotime() string {
 	return fmt.Sprintf("%d", time.Now().UnixNano())
 }
 
+// GetMillTime 获取当前微秒时间
+func GetMillTime() int64 {
+	return time.Now().UnixNano() / 100000
+}
+
 // GetTimestamp 获取当前格式化时间
 func GetTimestamp() string {
 	return time.Now().Format("2006-01-02 15:04:05")
