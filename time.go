@@ -17,7 +17,7 @@ func GetMicrotime() string {
 
 // GetMillsTime 获取当前微秒时间
 func GetMillsTime() int64 {
-	return time.Now().UnixNano() / 100000
+	return time.Now().UnixNano() / 1000000
 }
 
 // GetTimestamp 获取当前格式化时间
