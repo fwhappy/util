@@ -15,8 +15,8 @@ func GetMicrotime() string {
 	return fmt.Sprintf("%d", time.Now().UnixNano())
 }
 
-// GetMillTime 获取当前微秒时间
-func GetMillTime() int64 {
+// GetMillsTime 获取当前微秒时间
+func GetMillsTime() int64 {
 	return time.Now().UnixNano() / 100000
 }
 
