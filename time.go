@@ -43,3 +43,21 @@ func GetChinaWeekDay() int {
 	}
 	return int(weekDay)
 }
+
+// GetTodayStartTime 获取当天开始时间
+func GetTodayStartTime() int64 {
+	timeStr := time.Now().Format("2006-01-02")
+	fmt.Println("timeStr:", timeStr)
+	t, _ := time.Parse("2006-01-02", timeStr)
+	return t.Unix()
+}
+
+// GetChinaWeekStartTime 获取中国的本周一开始时间
+func GetChinaWeekStartTime() int64 {
+	// 获取今天是周几
+	weekday := GetChinaWeekDay()
+	// 获取当天开始
+	startTime := GetTodayStartTime()
+
+	return startTime - int64((weekday-1)*86400)
+}
