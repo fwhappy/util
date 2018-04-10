@@ -30,3 +30,12 @@ func EarthDistance(lat1, lng1, lat2, lng2 float64) float64 {
 
 	return dist * radius
 }
+
+// int取绝对值
+func Abs(amount int) int {
+	if amount >= 0 {
+		return amount
+	} else {
+		return amount * -1
+	}
+}
