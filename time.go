@@ -16,8 +16,14 @@ func GetMicrotime() string {
 }
 
 // GetMillsTime 获取当前微秒时间
+// 名称拼写错误了，不知道以前有哪些地方调用，以后的项目中废弃
 func GetMillsTime() int64 {
 	return time.Now().UnixNano() / 1000000
+}
+
+// GetMilliTime 获取当前毫秒时间
+func GetMilliTime() int64 {
+	return time.Now().UnixNano() / int64(time.Millisecond)
 }
 
 // GetTimestamp 获取当前格式化时间
